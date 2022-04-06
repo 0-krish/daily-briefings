@@ -10,7 +10,6 @@ load_dotenv()
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDER_EMAIL_ADDRESS = os.getenv("SENDER_EMAIL_ADDRESS")
 
-
 def send_email(subject="[Daily Briefing] This is a test", html="<p>Hello World</p>", recipient_address=SENDER_EMAIL_ADDRESS):
     """
     Sends an email with the specified subject and html contents to the specified recipient,
@@ -22,7 +21,10 @@ def send_email(subject="[Daily Briefing] This is a test", html="<p>Hello World</
     print("SUBJECT:", subject)
     #print("HTML:", html)
 
-    message = Mail(from_email=SENDER_EMAIL_ADDRESS, to_emails=recipient_address, subject=subject, html_content=html)
+    message = Mail(from_email=SENDER_EMAIL_ADDRESS,
+                   to_emails=recipient_address,
+                   subject=subject,
+                   html_content=html)
     try:
         response = client.send(message)
         print("RESPONSE:", type(response)) #> <class 'python_http_client.client.Response'>
@@ -59,4 +61,6 @@ if __name__ == "__main__":
     </ul>
     """
 
-    send_email(example_subject, example_html)
+    reciepient = "ks1730@georgetown.edu"
+
+    send_email(example_subject, example_html, reciepient)
