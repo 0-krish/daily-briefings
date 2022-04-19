@@ -10,11 +10,10 @@ weather_routes = Blueprint("weather_routes", __name__)
 def weather_forecast_api():
     print("WEATHER FORECAST (API)...")
 
-    url_params = dict(request.args)
-    print("URL PARAMS:", url_params)
+    print("URL PARAMS:", dict(request.args))
 
-    country_code = url_params.get("country_code") or "US"
-    zip_code = url_params.get("zip_code") or "20057"
+    country_code = request.args.get("country_code") or "US"
+    zip_code = request.args.get("zip_code") or "20057"
 
     results = get_hourly_forecasts(country_code=country_code, zip_code=zip_code)
     if results:
